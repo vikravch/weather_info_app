@@ -8,7 +8,7 @@ interface WeatherApi {
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
 const APP_ID = 'c3bd24f13cecf13f96cfdc182bc8d4e8';
 
-const WeatherFetchApi: WeatherApi = {
+/*const WeatherFetchApi: WeatherApi = {
     async getWeatherByCityName(cityName: string): Promise<string> {
         try {
             const response = await fetch(
@@ -29,7 +29,7 @@ const WeatherFetchApi: WeatherApi = {
             return JSON.stringify(error);
         }
     }
-}
+}*/
 
 const instance = axios.create({
     baseURL: BASE_URL,
