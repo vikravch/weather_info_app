@@ -1,11 +1,21 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import {combineReducers, configureStore} from "@reduxjs/toolkit";
+import logger from "redux-logger";
 import {cityListReducer} from "../feature/weather/redux/cityListReducer.ts";
 import {weatherReducer} from "../feature/weather/redux/weatherReducer.ts";
-import {thunk} from "redux-thunk";
-import logger from "redux-logger";
 
 export const store =
-    createStore(
+    configureStore({
+        reducer: combineReducers(
+            {
+                cityList: cityListReducer,
+                weatherData: weatherReducer,
+            }
+        ),
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware().concat(logger),
+        devTools: process.env.NODE_ENV !== 'production',
+    })
+    /*createStore(
         combineReducers(
             {
                cityList: cityListReducer,
@@ -13,7 +23,7 @@ export const store =
             }
         ), applyMiddleware(
             thunk, logger)
-);
+);*/
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
