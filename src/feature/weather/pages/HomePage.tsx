@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import type {AppDispatch, RootState} from "../../../redux/store.ts";
 import {type CityListReducerType} from "../redux/cityListReducer.ts";
 import type {WeatherReducerType} from "../redux/weatherReducer.ts";
-import {getWeatherWithCityName, getWeatherWithLocation} from "../redux/asyncActions.ts";
+import {getTWeatherWithCityName, getWeatherWithLocation} from "../redux/asyncThunkActions.ts";
 
 export const HomePage: React.FC = ()=>{
     const navigate = useNavigate();
@@ -48,16 +48,23 @@ export const HomePage: React.FC = ()=>{
                     location.latitude,
                     location.longitude
                 ).then((weather)=> setCurrentWeather(weather))*/
-                dispatch(getWeatherWithLocation(
+                /*dispatch(getWeatherWithLocation(
                     location.latitude,
                     location.longitude
+                ))*/
+                dispatch(getWeatherWithLocation(
+                    {
+                        latitude: location.latitude,
+                        longitude: location.longitude
+                    }
                 ))
             }
         } else {
             /*WeatherApi.getWeatherByCityName(
                 selectedCity
             ).then((weather)=> setCurrentWeather(weather))*/
-            dispatch(getWeatherWithCityName(selectedCity));
+            //dispatch(getWeatherWithCityName(selectedCity));
+            dispatch(getTWeatherWithCityName(selectedCity));
         }
     }, [selectedCity, location]);
 

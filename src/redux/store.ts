@@ -1,14 +1,16 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import logger from "redux-logger";
-import {cityListReducer} from "../feature/weather/redux/cityListReducer.ts";
-import {weatherReducer} from "../feature/weather/redux/weatherReducer.ts";
+//import {cityListReducer} from "../feature/weather/redux/cityListReducer.ts";
+//import {weatherReducer} from "../feature/weather/redux/weatherReducer.ts";
+import listReducer from "../feature/weather/redux/cityListSlice.ts";
+import weatherSliceReducer from "../feature/weather/redux/weatherSlice.ts";
 
 export const store =
     configureStore({
         reducer: combineReducers(
             {
-                cityList: cityListReducer,
-                weatherData: weatherReducer,
+                cityList: listReducer,
+                weatherData: weatherSliceReducer,
             }
         ),
         middleware: (getDefaultMiddleware) =>

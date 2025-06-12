@@ -2,7 +2,8 @@ import React, {useRef} from "react";
 import {useNavigate} from "react-router-dom";
 import {HOME_PAGE} from "../../../router/navigation.ts";
 import {useDispatch} from "react-redux";
-import {addNewCity} from "../redux/cityListReducer.ts";
+//import {addNewCity} from "../redux/cityListReducer.ts";
+import {addNewCity} from "../redux/cityListSlice.ts";
 
 export const AddCityPage: React.FC = () => {
     const navigate = useNavigate();
