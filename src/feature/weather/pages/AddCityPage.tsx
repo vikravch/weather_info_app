@@ -1,17 +1,18 @@
 import React, {useRef} from "react";
-import {useCityListContext} from "../context/CityListContext.tsx";
 import {useNavigate} from "react-router-dom";
 import {HOME_PAGE} from "../../../router/navigation.ts";
+import {useDispatch} from "react-redux";
+import {addNewCity} from "../redux/cityListReducer.ts";
 
 export const AddCityPage: React.FC = () => {
     const navigate = useNavigate();
     const cityInput = useRef<HTMLInputElement>(null);
-    const {addNewCity} = useCityListContext();
+    const dispatch = useDispatch();
 
     const onAddCityClick = () => {
         const inputCityValue = cityInput.current?.value || '';
         console.log('Value from input - ', inputCityValue);
-        addNewCity(inputCityValue);
+        dispatch(addNewCity(inputCityValue));
         navigate(`/${HOME_PAGE}`);
     }
     return (
